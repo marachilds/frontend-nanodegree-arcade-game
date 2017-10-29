@@ -2,7 +2,7 @@
 var Enemy = function(yCoord) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    this.x = (Math.floor(Math.random()*300));
+    this.x = (Math.floor(Math.random() * 300));
     this.y = yCoord;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -12,25 +12,24 @@ var Enemy = function(yCoord) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    if(this.x >= 700){
+    if (this.x >= 700) {
         this.x = 0; //Reset xCoord to 0
     }
-    this.x += dt + Math.floor(Math.random()*8); //Random whole number to set speed
+    this.x += dt + Math.floor(Math.random() * 8); //Random whole number to set speed
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
     //Check for enemy collision
     allEnemies.forEach(function(enemy) {
-        if ((player.y >= enemy.y - 20 && player.y <= enemy.y + 20) 
-        && (player.x >= enemy.x && player.x <= enemy.x + 50)) {
+        if ((player.y >= enemy.y - 20 && player.y <= enemy.y + 20) &&
+            (player.x >= enemy.x && player.x <= enemy.x + 50)) {
             Player.prototype.reset();
             alert("You lost!"); //Window alert that they lost
-            
         }
     });
-    
+
     //Winning alert
-    if(player.y === -10){
+    if (player.y === -15) {
         Player.prototype.reset();
         alert("You won!"); //Window alert that they won
     }
@@ -51,15 +50,15 @@ var Player = function() {
 };
 
 Player.prototype.reset = function() {
-        player.x = 200; //Original this.x
-        player.y = 400; //Original this.y
+    this.x = 200; //Original this.x
+    this.y = 400; //Original this.y
 };
 
 Player.prototype.update = function() {
-    if(this.y < 0){
-        player.x = 200; //Original this.x
-        player.y = 400; //Original this.y
-       }
+    if (this.y < -10) {
+        this.x = 200; //Original this.x
+        this.y = 400; //Original this.y
+    }
 };
 
 Player.prototype.render = function() {
@@ -67,17 +66,17 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-    if(key == 'left' && this.x > 0){
-        this.x -= 102; //Moves player left 102
+    if (key == 'left' && this.x > 0) {
+        this.x -= 101; //Moves player left 101
     }
-    if(key == 'up' && this.y > 0){
-        this.y -= 82; //Moves player up 82
+    if (key == 'up' && this.y > 0) {
+        this.y -= 83; //Moves player up 83
     }
-    if(key == 'right' && this.x < 400){
-        this.x += 102; //Moves player right 102
+    if (key == 'right' && this.x < 400) {
+        this.x += 101; //Moves player right 101
     }
-    if(key == 'down' && this.y < 400){
-        this.y += 82; //Moves player down 82
+    if (key == 'down' && this.y < 400) {
+        this.y += 83; //Moves player down 83
     }
 };
 
